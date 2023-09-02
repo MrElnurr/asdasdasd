@@ -15,37 +15,36 @@ class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
+
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Car> cars = [];
+  Future<void> getData() async {
+    try {
+      var response = await getCars2();
+      setState(() {
+        cars = response;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState(){
+    //you are not allowed to add async modifier to initState
+    getData();
+    super.initState();
+    print("This is test function");
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size; //check the size of device
     ThemeData themeData = Theme.of(context);
-    List<Car> cars = [];
-    Future<void> getData() async {
-      try {
-        var response = await getCars();
-        setState(() {
-          cars = response;
-        });
-      } catch (e) {
-        print(e);
-      }
-    }
 
-    @override
-    void initState() {
-      //you are not allowed to add async modifier to initState
-      getData();
-      super.initState();
-    }
-
-    //this is async test function
-    Future<String> testfunction() {
-      print("This is test function");
-      return Future(() => "abc");
-    }
 
     return Scaffold(
       extendBody: true,

@@ -1,14 +1,19 @@
+import 'dart:convert';
+
 import 'package:car_rental_app_ui/data/cars.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 Future<List<Car>> getCars() async {
   var url = 'http://45.87.173.234:10/car';
   var res = await Dio().get(url);
 
   try {
+    print(res.data);
     if (res.statusCode == 200) {
-      var body = res.data as List;
-      return body.map((e) => Car.fromJson(e)).toList();
+      final data = json.decode(res.data) as Map<String, dynamic>;
+      final welcome = Welcome.fromJson(data);
+      return welcome.cars;
     }
     // ignore: avoid_print
     print(res.statusCode);
@@ -18,3 +23,27 @@ Future<List<Car>> getCars() async {
   }
   return [];
 }
+
+Future<List<Car>> getCars2() async {
+  try {
+    var url = 'http://45.87.173.234:10/car';
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      print("saalm");
+      print(response.body);
+      //print(a['cars']);
+      //final data = json.decode(response.body) as Map<String, dynamic>;
+      //print(data['cars']);
+      final welcome = Welcome.fromJson(jsonDecode(response.body));
+      return welcome.cars;
+    } else {
+      throw Exception('Failed to load cars');
+    }
+  } catch (e) {
+    throw Exception('Error: $e');
+  }
+}
+
+// You can add more API methods for retrieving other data if needed.
+

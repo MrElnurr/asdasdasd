@@ -13,7 +13,7 @@ Padding buildCar(Car car, size, themeData) {
     ),
     child: Center(
       child: SizedBox(
-        height: size.width * 0.9,
+        height: size.width * 0.95,
         width: size.width * 0.6,
         child: Container(
           decoration: BoxDecoration(
@@ -52,7 +52,7 @@ Padding buildCar(Car car, size, themeData) {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: car.isRotated
-                          ? Image.asset(
+                          ? Image.network(
                               car.image,
                               height: size.width * 0.25,
                               width: size.width * 0.5,
@@ -61,7 +61,7 @@ Padding buildCar(Car car, size, themeData) {
                           : Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.rotationY(pi),
-                              child: Image.asset(
+                              child: Image.network(
                                 car.image,
                                 height: size.width * 0.25,
                                 width: size.width * 0.5,
@@ -77,7 +77,7 @@ Padding buildCar(Car car, size, themeData) {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: themeData.primaryColor,
-                        fontSize: size.width * 0.04,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -87,7 +87,7 @@ Padding buildCar(Car car, size, themeData) {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       color: themeData.primaryColor,
-                      fontSize: size.width * 0.03,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

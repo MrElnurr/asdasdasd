@@ -6,27 +6,25 @@ String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
 class Welcome {
   final List<Car> cars;
-  final List<Mark> marks;
 
   Welcome({
     required this.cars,
-    required this.marks,
   });
 
   factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
-        cars: List<Car>.from(json["cars"].map((x) => Car.fromJson(x))),
-        marks: List<Mark>.from(json["marks"].map((x) => Mark.fromJson(x))),
-      );
+    cars: List<Car>.from(json["cars"].map((x) => Car.fromJson(x)))
+  );
 
   Map<String, dynamic> toJson() => {
-        "cars": List<dynamic>.from(cars.map((x) => x.toJson())),
-        "marks": List<dynamic>.from(marks.map((x) => x.toJson())),
-      };
+    "cars": List<dynamic>.from(cars.map((x) => x.toJson())),
+    //"marks": List<dynamic>.from(marks.map((x) => x.toJson())),
+  };
 }
 
 class Car {
+  final int id;
   final String title;
-  final String description;
+  final Description description;
   final int price;
   final int speed;
   final int seats;
@@ -36,6 +34,7 @@ class Car {
   final String image;
 
   Car({
+    required this.id,
     required this.title,
     required this.description,
     required this.price,
@@ -48,44 +47,52 @@ class Car {
   });
 
   factory Car.fromJson(Map<String, dynamic> json) => Car(
-        title: json["carName"],
-        description: json["carClass"],
-        price: json["carPrice"],
-        speed: json["carPower"],
-        seats: int.parse(
-            json["people"].split('-')[1]), // Assuming "1-4" will be split to 4.
-        engine: int.parse(
-            json["engine"].split('-')[1]), // Assuming "1-3" will be split to 3.
-        brand: json["brand"],
-        category: categoryValues.map[json["category"]] ?? Category.SEDAN,
-        image: json["carImage"],
-      );
+    id: json["id"],
+    title: json["title"],
+    description: descriptionValues.map[json["description"]]!,
+    price: json["price"],
+    speed: json["speed"],
+    seats: json["seats"],
+    engine: json["engine"],
+    brand: json["brand"],
+    category: categoryValues.map[json["category"]]!,
+    image: json["image"],
+  );
 
   get isRotated => false;
 
   Map<String, dynamic> toJson() => {
-        "carName": title,
-        "carClass": description,
-        "carPrice": price,
-        "carPower": speed,
-        "people": "1-${seats}",
-        "engine": "1-${engine}",
-        "brand": brand,
-        "category": categoryValues.reverse[category],
-        "carImage": image,
-      };
+    "id": id,
+    "title": title,
+    "description": descriptionValues.reverse[description],
+    "price": price,
+    "speed": speed,
+    "seats": seats,
+    "engine": engine,
+    "brand": brand,
+    "category": categoryValues.reverse[category],
+    "image": image,
+  };
 }
 
 enum Category {
   SEDAN,
   SPORT_CAR,
-  SUV,
+  SUV
 }
 
 final categoryValues = EnumValues({
   "Sedan": Category.SEDAN,
-  "Sport": Category.SPORT_CAR,
-  "City": Category.SUV,
+  "Sport Car": Category.SPORT_CAR,
+  "SUV": Category.SUV
+});
+
+enum Description {
+  A_CAR_WITH_HIGH_SPECS_THAT_IS_RENTED_AT_AN_AFFORDABLE_PRICE
+}
+
+final descriptionValues = EnumValues({
+  "A car with high specs that is rented at an affordable price": Description.A_CAR_WITH_HIGH_SPECS_THAT_IS_RENTED_AT_AN_AFFORDABLE_PRICE
 });
 
 class Mark {
@@ -100,16 +107,16 @@ class Mark {
   });
 
   factory Mark.fromJson(Map<String, dynamic> json) => Mark(
-        id: json["id"],
-        title: json["title"],
-        image: json["image"],
-      );
+    id: json["id"],
+    title: json["title"],
+    image: json["image"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "image": image,
-      };
+    "id": id,
+    "title": title,
+    "image": image,
+  };
 }
 
 class EnumValues<T> {

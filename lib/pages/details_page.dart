@@ -108,7 +108,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       widget.isRotated
-                          ? Image.asset(
+                          ? Image.network(
                               widget.carImage,
                               height: size.width * 0.7,
                               width: size.width * 0.8,
@@ -118,7 +118,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           : Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.rotationY(pi),
-                              child: Image.asset(
+                              child: Image.network(
                                 widget.carImage,
                                 height: size.width * 0.7,
                                 width: size.width * 0.8,
