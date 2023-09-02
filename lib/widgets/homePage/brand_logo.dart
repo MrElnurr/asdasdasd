@@ -14,7 +14,7 @@ Padding buildBrandLogo(
           width: size.width * 0.18,
           child: Container(
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   50,

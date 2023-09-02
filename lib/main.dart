@@ -25,7 +25,6 @@ class _AppState extends State<App> {
       title: 'Car Rental App',
       home: const HomePage(),
       theme: lightModeTheme,
-      darkTheme: darkModeTheme,
     );
   }
 }

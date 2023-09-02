@@ -19,7 +19,7 @@ Future<List<Car>> getCars() async {
     print(res.statusCode);
   } catch (e) {
     // ignore: avoid_print
-    print('Sehv var: $e');
+    print('error: $e');
   }
   return [];
 }

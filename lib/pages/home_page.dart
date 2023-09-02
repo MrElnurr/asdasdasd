@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     getData();
     super.initState();
-    print("This is test function");
+    print("Testtetet");
   }
 
   @override
@@ -130,7 +130,6 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           SizedBox(
                             child: TextField(
-                              //searchbar
                               style: GoogleFonts.poppins(
                                 color: themeData.primaryColor,
                               ),
