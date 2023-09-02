@@ -2,6 +2,7 @@ import 'package:car_rental_app_ui/data/themes_data.dart';
 import 'package:car_rental_app_ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

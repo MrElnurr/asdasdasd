@@ -32,9 +32,6 @@ Future<List<Car>> getCars2() async {
     if (response.statusCode == 200) {
       print("saalm");
       print(response.body);
-      //print(a['cars']);
-      //final data = json.decode(response.body) as Map<String, dynamic>;
-      //print(data['cars']);
       final welcome = Welcome.fromJson(jsonDecode(response.body));
       return welcome.cars;
     } else {
@@ -44,6 +41,3 @@ Future<List<Car>> getCars2() async {
     throw Exception('Error: $e');
   }
 }
-
-// You can add more API methods for retrieving other data if needed.
-

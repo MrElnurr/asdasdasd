@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Padding buildBrandLogo(Widget image, Size size, ThemeData themeData) {
+Padding buildBrandLogo(
+    Widget image, Size size, ThemeData themeData, String name) {
   return Padding(
     padding: EdgeInsets.symmetric(
       horizontal: size.width * 0.03,
@@ -26,7 +27,7 @@ Padding buildBrandLogo(Widget image, Size size, ThemeData themeData) {
           ),
         ),
         Text(
-          "Lorem",
+          "$name",
           style: GoogleFonts.poppins(
             color: Colors.grey.shade700,
             fontSize: 14,

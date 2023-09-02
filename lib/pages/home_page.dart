@@ -1,5 +1,6 @@
 import 'package:car_rental_app_ui/data/cars.dart';
 import 'package:car_rental_app_ui/data/get_cars.dart';
+import 'package:car_rental_app_ui/pages/notification_page.dart';
 import 'package:car_rental_app_ui/widgets/bottom_nav_bar.dart';
 
 import 'package:car_rental_app_ui/widgets/homePage/most_rented.dart';
@@ -9,14 +10,16 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:unicons/unicons.dart';
+import '../widgets/random_emoji.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
-
 }
+
+RandomEmojiGenerator random = RandomEmojiGenerator();
 
 class _HomePageState extends State<HomePage> {
   List<Car> cars = [];
@@ -32,19 +35,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  void initState(){
-    //you are not allowed to add async modifier to initState
+  void initState() {
     getData();
     super.initState();
     print("This is test function");
-
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; //check the size of device
+    var emoji = random.getRandomEmoji();
+    Size size = MediaQuery.of(context).size;
     ThemeData themeData = Theme.of(context);
-
 
     return Scaffold(
       extendBody: true,
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: const BorderRadius.all(
                     Radius.circular(15),
                   ),
-                  color: themeData.cardColor, //section bg color
+                  color: themeData.cardColor,
                 ),
                 child: Column(
                   children: [
@@ -76,14 +77,14 @@ class _HomePageState extends State<HomePage> {
                             child: CircleAvatar(
                                 radius: 20,
                                 backgroundImage: NetworkImage(
-                                    'https://via.placeholder.com/140x100'))),
+                                    'https://images.mubicdn.net/images/cast_member/25100/cache-2388-1688754259/image-w856.jpg'))),
                         Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 8, left: 16),
                               child: Align(
                                 child: Text(
-                                  'Welcome',
+                                  'Welcome  $emoji',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     color: themeData.primaryColor,
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(left: 16),
                               child: Align(
                                 child: Text(
-                                  'John Doe',
+                                  'Jason Statham',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     color: themeData.primaryColor,
@@ -109,12 +110,15 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Spacer(),
-                        const Padding(
-                            padding: EdgeInsets.only(right: 16, top: 8),
-                            child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://via.placeholder.com/140x100')))
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NotificationScreen()),
+                              );
+                            },
+                            icon: Icon(Icons.notifications))
                       ],
                     ),
                     Padding(
@@ -156,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(40),
                                 ),
-                                color: Color(0xff030303), //filters bg color
+                                color: Color(0xff030303),
                               ),
                               child: Icon(
                                 UniconsLine.sliders_v,
@@ -172,7 +176,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            buildTopBrands(size, themeData),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: buildTopBrands(size, themeData)),
             buildMostRented(cars, size, themeData),
           ],
         ),

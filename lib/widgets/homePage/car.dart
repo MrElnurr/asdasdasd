@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:car_rental_app_ui/data/cars.dart'; // Import your data source
+import 'package:car_rental_app_ui/data/cars.dart';
 import 'package:car_rental_app_ui/pages/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,7 +73,7 @@ Padding buildCar(Car car, size, themeData) {
                   Padding(
                     padding: EdgeInsets.only(),
                     child: Text(
-                      car.category.toString(),
+                      'Price:   ${(car.price.toString())} \$',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: themeData.primaryColor,

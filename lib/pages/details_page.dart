@@ -36,11 +36,11 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; //check the size of device
+    Size size = MediaQuery.of(context).size;
     ThemeData themeData = Theme.of(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(40.0), //appbar size
+        preferredSize: const Size.fromHeight(40.0),
         child: AppBar(
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -55,7 +55,7 @@ class _DetailsPageState extends State<DetailsPage> {
               width: size.width * 0.1,
               child: InkWell(
                 onTap: () {
-                  Get.back(); //go back to home page
+                  Get.back();
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -173,7 +173,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Text(
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'",
+                                "",
                                 textAlign: TextAlign.left,
                                 style: GoogleFonts.poppins(
                                   color: themeData.primaryColor,
@@ -216,7 +216,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       )
                     ],
                   ),
-                  buildSelectButton(size,widget.carPrice),
+                  buildSelectButton(size, widget.carPrice),
                 ],
               ),
             ),
@@ -289,7 +289,7 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 }
 
-Align buildSelectButton(Size size,int price) {
+Align buildSelectButton(Size size, int price) {
   return Align(
     alignment: Alignment.bottomCenter,
     child: Padding(

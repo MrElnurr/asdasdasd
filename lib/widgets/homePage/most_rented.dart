@@ -12,7 +12,7 @@ Widget buildMostRented(List<Car> cars, Size size, ThemeData themeData) {
         borderRadius: BorderRadius.all(
           Radius.circular(30),
         ),
-        color: Color(0xffdad3d3),
+        color: Color.fromARGB(255, 241, 238, 238),
       ),
       child: Column(
         children: [
